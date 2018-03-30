@@ -1,0 +1,151 @@
+//rule "notify when light is updated"
+//	when
+//		Item gLight changed
+//	then
+//Thread::sleep(300)
+//		logWarn("test.rules", "start")
+//val trigger = gLight.members.sortBy[lastUpdate].last
+//
+//val trigger  = gLight.members.filter[s|s.lastUpdate("mapdb") !== null].sortBy[lastUpdate("mapdb")].last
+//logWarn("test.rules", dings.name)
+//
+//
+//val StringBuilder msg = new StringBuilder
+//    msg.append(trigger.name)  // note a map and transform can convert from Item name to human friendly words
+//
+//   if(trigger.state == ON) msg.append(" was turned on") else msg.append(" was turned off")
+//
+//
+//voicecommand.sendCommand(msg.toString)
+//
+//
+//
+//logWarn("test.rules", trigger.name)
+//
+//		end
+
+
+rule "notify when Contact  is updated"
+        when
+                Item gContact changed
+        then
+    Thread::sleep(300)
+                logWarn("test.rules", "Contact start")
+
+  val trigger  = gContact.members.filter[s|s.lastUpdate("mapdb") !== null].sortBy[lastUpdate("mapdb")].last
+//logWarn("test.rules", dings.name)
+
+
+  val StringBuilder msg = new StringBuilder
+    msg.append(trigger.name)  // note a map and transform can convert from Item name to human friendly words
+
+   if(trigger.state == OPEN) {
+      msg.append(" was opened")
+      sendCommand(GarageDoor_Timer, ON)
+   }
+   else{ 
+    msg.append(" was closed")
+    GarageDoor_Timer.postUpdate(OFF)
+   }
+
+  voicecommand.sendCommand(msg.toString)
+
+
+ end
+
+rule "send alert"
+  when
+    Item GarageDoor_Timer changed
+  then
+logWarn("test.rules", "Garage door state:"+GarageDoor_Timer.state)
+
+if(GarageDoor_Timer.state == OFF && GarageDoorSensor.state == OPEN){
+   
+     logWarn("test.rules", "Garage door left on")
+     sendMail("6305612356@messaging.sprintpcs.com", "Garage Door Open", "Garage Door Open")
+   }
+end
+
+
+
+rule "turn on lights"
+when
+Channel 'astro:sun:homestart:set#event' triggered START
+then
+sendMail("bradcurtis74@gmail.com", "astrodusk lights on", "home astro rule triggered")
+//sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights on", "home astro rule triggered")
+sendCommand(gLight, ON)
+
+end
+
+
+
+rule "turn off lights 9pmw"
+when
+    Time cron "0 0 21 * * ? *"            // Morning start
+then
+  sendMail("bradcurtis74@gmail.com", "astrodusk", "off set rule triggered")
+//sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights off", "home astro rule triggered")
+
+                sendCommand(gLight, OFF)
+     
+
+
+end
+
+
+rule "turn off lights morning"
+when
+
+Channel 'astro:sun:homelast:rise#event' triggered START
+
+then
+  sendMail("bradcurtis74@gmail.com", "astrodusk", "off set rule triggered")
+sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights off", "home astro rule triggered")
+
+                sendCommand(gLight, OFF)
+
+
+
+end
+
+rule "motion switch"
+
+when
+Item basementmotion changed
+then
+   if (basementmotion.state.toString != "standby"){
+  MotionLatch.postUpdate("Motion Detected!!!")
+  }
+end
+
+rule "motion switch garage"
+
+when
+Item garagemotion changed
+then
+   if (garagemotion.state.toString != "standby"){
+  MotionLatch1.postUpdate("Motion Detected!!!")
+  }
+end
+
+rule "motion switch familyroom motion camera"
+
+when
+Item familyroomcameramotion changed
+then
+  MotionLatch2.postUpdate("Motion Detected!!!")
+logWarn("test.rules", now.getHourOfDay())
+end
+
+rule familyroomcameramotio
+when
+    Item familyroomcameramotion changed
+
+then
+           if (now.getHourOfDay() > 4 && now.getHourOfDay() < 7 && familyroomcameramotion.state.toString !="Idle") {
+                sendCommand(FamilyLight, ON)
+          }
+
+end
+

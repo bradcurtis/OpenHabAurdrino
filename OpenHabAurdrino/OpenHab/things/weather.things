@@ -1,0 +1,20 @@
+Thing weatherunderground:weather:CDG "MPark Ridge" [ apikey="6a78cdc3fe148767", location="60068", language="EN", refresh=30 ] {
+    Channels:
+        Type temperature : current#temperature [ SourceUnit="F" ]
+        Type windSpeed : current#windSpeed [ SourceUnit="mph" ]
+        Type windGust : current#windGust [ SourceUnit="mph" ]
+        Type pressure : current#pressure [ SourceUnit="hPa" ]
+        Type dewPoint : current#dewPoint [ SourceUnit="F" ]
+        Type heatIndex : current#heatIndex [ SourceUnit="F" ]
+        Type windChill : current#windChill [ SourceUnit="F" ]
+        Type feelingTemperature : current#feelingTemperature [ SourceUnit="F" ]
+        Type visibility : current#visibility [ SourceUnit="F" ]
+        Type rainDay : current#precipitationDay [ SourceUnit="in" ]
+        Type rainHour : current#precipitationHour [ SourceUnit="in" ]
+        Type minTemperature : forecastToday#minTemperature [ SourceUnit="F" ]
+        Type maxTemperature : forecastToday#maxTemperature [ SourceUnit="F" ]
+        Type rainDay : forecastToday#precipitationDay [ SourceUnit="in" ]
+        Type snow : forecastToday#snow [ SourceUnit="in" ]
+        Type maxWindSpeed : forecastToday#maxWindSpeed [ SourceUnit="mph" ]
+        Type averageWindSpeed : forecastToday#averageWindSpeed [ SourceUnit="mph" ]
+}

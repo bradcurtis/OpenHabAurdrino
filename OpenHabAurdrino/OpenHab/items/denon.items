@@ -1,0 +1,31 @@
+Switch DenonPower			"Power"					{denon="RX-V671#PW"}
+Switch DenonMainZone		"Main Zone"				{denon="RX-V671#ZM"}
+Dimmer DenonVolume			"Volume [%.1f]"			{denon="RX-V671#MV"}
+Switch DenonMute			"Mute"					{denon="RX-V671#MU"}
+String DenonSurroundMode	"Surround mode [%s]"	{denon="RX-V671#SURROUNDMODE"}
+
+String DenonCurrentTrack		"Current track [%s]"		{denon="RX-V671#TRACK"}
+String DenonCurrentArtist		"Current artist [%s]"		{denon="RX-V671#ARTIST"}
+String DenonCurrentAlbum		"Current album [%s]"		{denon="RX-V671#ALBUM"}
+
+String DenonInput			"Input [%s]"			{denon="RX-V671#INPUT"}
+Switch DenonInputCD			"Input CD"				{denon="RX-V671#SICD"}
+Switch DenonInputUSBIPOD	"Input USB/IPOD"		{denon="RX-V671#SIUSB/IPOD"}
+Switch DenonInputNet		"Input Network"			{denon="RX-V671#SINET"}
+Switch DenonInputSpotify	"Input Spotify"			{denon="RX-V671#SISPOTIFY"}
+Switch DenonInputTuner		"Input Tuner"			{denon="RX-V671#SITUNER"}
+Switch DenonInputDVD		"Input DVD"				{denon="RX-V671#SIDVD"}
+Switch DenonInputBluray		"Input Bluray"			{denon="RX-V671#SIBD"}
+Switch DenonInputTV			"Input TV"				{denon="RX-V671#SITV"}
+Switch DenonInputSATCBL		"Input SAT/CBL"			{denon="RX-V671#SISAT/CBL"}
+Switch DenonInputMplay		"Input Mediaplayer"		{denon="RX-V671#SIMPLAY"}
+Switch DenonInputGame		"Input Game"			{denon="RX-V671#SIGAME"}
+Switch DenonInputAux1		"Input Aux1"			{denon="RX-V671#SIAUX1"}
+
+Switch DenonZoneTwo					"Zone 2"				{denon="RX-V671#Z2"}
+Dimmer DenonZoneTwoVolume			"Volume [%.1f]"			{denon="RX-V671#Z2ZV"}
+Switch DenonZoneTwoMute				"Zone 2 Mute"			{denon="RX-V671#Z2MU"}
+
+Switch DenonZoneTwoInputSource		"Zone 2 Input Source"	{denon="RX-V671#Z2SOURCE"}
+Switch DenonZoneTwoInputUSB			"Zone 2 Input USB"		{denon="RX-V671#Z2USB/IPOD"}
+Switch DenonZoneTwoInputTuner		"Zone 2 Tuner"			{denon="RX-V671#Z2TUNER"}

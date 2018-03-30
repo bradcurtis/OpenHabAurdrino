@@ -1,0 +1,24 @@
+rule LastMotionON
+when
+    Item bedroomOccupancy changed to ON or
+    Item diningRoomOccupancy changed to ON 
+    
+then
+           if (now.getHourOfDay() > 9 && now.getHourOfDay() < 13) {
+                sendCommand(FamilyLight, ON)
+                Entry_Timer.sendCommand(ON) 
+          }
+
+end
+
+rule ightTimerEND
+when
+  Item Entry_Timer received command OFF
+then
+  if (diningRoomOccupancy.state == OFF && bedroomOccupancy.state == OFF)
+  {
+    sendCommand(FamilyLight, OFF)
+  }
+
+end
+

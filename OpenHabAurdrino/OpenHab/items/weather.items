@@ -1,0 +1,42 @@
+String Conditions "Conditions [%s]" {channel="weatherunderground:weather:CDG:current#conditions"}
+Image Icon "Icon" {channel="weatherunderground:weather:CDG:current#icon"}
+DateTime ObservationTime "Observation time [%1$tH:%1$tM]" <clock>  {channel="weatherunderground:weather:CDG:current#observationTime"}
+String ObservationLocation "Location [%s]" {channel="weatherunderground:weather:CDG:current#location"}
+String Station "Station [%s]" {channel="weatherunderground:weather:CDG:current#stationId"}
+
+Number Temperature "Current temperature [%.1f °F]" <temperature> {channel="weatherunderground:weather:CDG:current#temperature"}
+Number FeelTemp "Feeling temperature [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:current#feelingTemperature"}
+
+Number Humidity "Humidity [%d %%]" <humidity> {channel="weatherunderground:weather:CDG:current#relativeHumidity"}
+Number Pressure "Pressure [%.0f hPa]" {channel="weatherunderground:weather:CDG:current#pressure"}
+
+Number RainD "Rain [%.1f mm]" <rain> {channel="weatherunderground:weather:CDG:current#precipitationDay"}
+Number RainH "Rain [%.1f mm/h]" <rain> {channel="weatherunderground:weather:CDG:current#precipitationHour"}
+
+String WindDirection "Wind direction [%s]" <wind> {channel="weatherunderground:weather:CDG:current#windDirection"}
+Number WindDirection2 "Wind direction [%.0f °]" <wind>  {channel="weatherunderground:weather:CDG:current#windDirectionDegrees"}
+Number WindSpeed "Wind speed [%.1f m/h]" <wind> {channel="weatherunderground:weather:CDG:current#windSpeed"}
+Number WindGust "Wind gust [%.1f m/h]" <wind> {channel="weatherunderground:weather:CDG:current#windGust"}
+
+Number DewPoint "Dew Point [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:current#dewPoint"}
+Number HeatIndex "Heat Index [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:current#heatIndex"}
+Number WindChill "Wind Chill [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:current#windChill"}
+Number Visibility "Visibility [%.1f km]" {channel="weatherunderground:weather:CDG:current#visibility"}
+Number SolarRadiation "Solar Radiation [%.2f] W/m2"  {channel="weatherunderground:weather:CDG:current#solarRadiation"}
+Number UV "UV Index [%.1f]" {channel="weatherunderground:weather:CDG:current#UVIndex"}
+
+DateTime ForecastTime "Forecast time [%1$tH:%1$tM]" <clock>  {channel="weatherunderground:weather:CDG:forecastToday#forecastTime"}
+String ForecastCondition "Forecast conditions [%s]"  {channel="weatherunderground:weather:CDG:forecastToday#conditions"}
+Image ForecastIcon "Forecast icon"  {channel="weatherunderground:weather:CDG:forecastToday#icon"}
+Number ForecastTempMin "Forecast min temp [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:forecastToday#minTemperature"}
+Number ForecastTempMax "Forecast max temp [%.1f °F]" <temperature>  {channel="weatherunderground:weather:CDG:forecastToday#maxTemperature"}
+Number ForecastHumidity "Forecast Humidity [%d %%]" <humidity>  {channel="weatherunderground:weather:CDG:forecastToday#relativeHumidity"}
+Number ForecastProbaPrecip "Proba precip [%d %%]" <rain>  {channel="weatherunderground:weather:CDG:forecastToday#probaPrecipitation"}
+Number ForecastRain "Rain [%.1f mm]" <rain> {channel="weatherunderground:weather:CDG:forecastToday#precipitationDay"}
+Number ForecastSnow "Snow [%.2f cm]" <rain> {channel="weatherunderground:weather:CDG:forecastToday#snow"}
+String ForecastMaxWindDirection "Max wind direction [%s]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#maxWindDirection"}
+Number ForecastMaxWindDirection2 "Max wind direction [%.0f °]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#maxWindDirectionDegrees"}
+Number ForecastMaxWindSpeed "Max wind speed [%.1f m/h]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#maxWindSpeed"}
+String ForecastAvgWindDirection "Avg wind direction [%s]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#averageWindDirection"}
+Number ForecastAvgWindDirection2 "Avg wind direction [%.0f °]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#averageWindDirectionDegrees"}
+Number ForecastAvgWindSpeed "Avg wind speed [%.1f m/h]" <wind>  {channel="weatherunderground:weather:CDG:forecastToday#averageWindSpeed"}

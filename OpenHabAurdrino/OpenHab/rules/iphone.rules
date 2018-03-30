@@ -1,0 +1,40 @@
+var Number IphoneCounter = 0
+val Number MaxCounter = 20
+
+rule "Execute script IphonePresence"
+when
+    Time cron "0 * * * * ?"
+then
+    var String IphoneExec = executeCommandLine("sudo@@bash@@/opt/IphoneD.sh", 5000)
+    Iphone.postUpdate(IphoneExec)
+//     logInfo("RULE1",IphoneExec)
+
+end
+
+rule "Determine presence Iphone"
+when 
+	Item Iphone received update
+then {
+	if(Iphone.state == "Phone 10.0.0.22 is not present") {
+		IphoneCounter = IphoneCounter + 1
+		if(IphoneCounter > MaxCounter) {
+			Iphone_Sw.sendCommand(OFF)
+			IphoneCounter = 0	
+		//	logInfo("RULE","Iphone  counter reached threshold and sent command OFF. Counter set to 0")
+		}
+		else {
+		//	logInfo("RULE","Counter Iphone threshold not yet reached. Counter set to " + IphoneCounter)
+		}
+	}
+	else {
+                if (Iphone_Sw.state == OFF){
+                 sendMail("bradcurtis74@gmail.com", "bradphone", "welcome home Brad!!!")
+                 sendMail("6305612356@messaging.sprintpcs.com", "bradphone", "welcome home Brad!!")
+                voicecommand.sendCommand("Welcome Home Brad")
+                 }
+		Iphone_Sw.sendCommand(ON)	
+		IphoneCounter = 0
+	//	logInfo("RULE","Iphone_Sw received command ON. Counter reset to 0")
+	}
+	}
+end

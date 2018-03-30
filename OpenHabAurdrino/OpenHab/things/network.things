@@ -1,0 +1,1 @@
+Thing network:pingdevice:BradPhone [ hostname="10.0.0.22", retry=1, timeout=5000, refresh_interval=60000  ]

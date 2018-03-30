@@ -1,0 +1,41 @@
+
+sitemap denon label="denon" {
+
+
+Frame label="Main Zone" {
+	Switch item=DenonPower
+	Switch item=DenonMainZone
+	Slider item=DenonVolume
+	Setpoint item=DenonVolume minValue=0 maxValue=100 step=0.5
+	Switch item=DenonMute
+	Switch item=DenonCommand label="Surround Mode" mappings=[MSSTANDARD="Standard", MSSTEREO="Stereo"]
+	Text item=DenonSurroundMode
+}
+Frame label="Main Zone Input" {
+	Selection label="Input" item=DenonInput mappings=[CD="CD", TUNER="Tuner", DVD="DVD", BD="Bluray", TV="TV", "SAT/CBL"="SAT/CBL", MPLAY="Mediaplayer", GAME="Game", AUX1="Aux1"]
+	Text item=DenonInput
+	Switch item=DenonInputCD mappings=[ON="CD"]
+	Switch item=DenonInputTuner mappings=[ON="Tuner"]
+	Switch item=DenonInputDVD mappings=[ON="DVD"]
+	Switch item=DenonInputBluray mappings=[ON="Bluray"]
+	Switch item=DenonInputTV mappings=[ON="TV"]
+	Switch item=DenonInputSATCBL mappings=[ON="SAT/CBL"]
+	Switch item=DenonInputMplay mappings=[ON="Mediaplayer"]
+	Switch item=DenonInputGame mappings=[ON="Game"]
+	Switch item=DenonInputAux1 mappings=[ON="Aux1"]
+}
+Frame label="Title Info" visibility=[DenonCurrentTrack!="Undefined",DenonCurrentArtist!="Undefined"] {
+	Text item=DenonCurrentTrack
+	Text item=DenonCurrentArtist
+	Text item=DenonCurrentAlbum
+	Webview url="http://192.168.1.70/NetAudio/art.asp-jpg" height=9
+}
+Frame label="Zone 2" {
+	Switch item=DenonZoneTwo
+	Switch item=DenonZoneTwoMute
+	Slider item=DenonZoneTwoVolume
+	Switch item=DenonZoneTwoInputUSB mappings=[ON="USB"]
+	Switch item=DenonZoneTwoInputSource mappings=[ON="Source"]
+	Switch item=DenonZoneTwoInputTuner mappings=[ON="Tuner"]
+}
+}

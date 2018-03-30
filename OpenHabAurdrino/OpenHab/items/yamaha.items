@@ -1,0 +1,8 @@
+Group  gFaudio
+
+Switch      Yamaha_Power                "Power [%s]"                <switch>            (gFaudio)    { channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0de877f65:Main_Zone:zone_channels#power" }
+Dimmer      Yamaha_Volume               "Volume [%.1f %%]"          <soundvolume>       (gFaudio)     { channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0de877f65:Main_Zone:zone_channels#volume" }
+Switch      Yamaha_Mute                 "Mute [%s]"                 <soundvolume_mute>  (gFaudio)     { channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0de877f65:Main_Zone:zone_channels#mute" }
+String      Yamaha_Input                "Input [%s]"                <video>             (gFaudio)     { channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0de877f65:Main_Zone:zone_channels#input" }
+String      Yamaha_Surround             "Surround [%s]"             <video>             (gFaudio)     { channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0de877f65:Main_Zone:zone_channels#surroundProgram" }
+

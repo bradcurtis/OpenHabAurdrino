@@ -1,0 +1,5 @@
+Switch     item=Yamaha_Power
+Switch     item=Yamaha_Mute
+Slider     item=Yamaha_Volume
+Selection  item=Yamaha_Input       mappings=[HDMI1="Kodi",HDMI2="PC",AUDIO1="TV",TUNER="Tuner",Spotify="Spotify",Bluetooth="Bluetooth","NET RADIO"="NetRadio"]
+Selection  item=Yamaha_Surround    mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]

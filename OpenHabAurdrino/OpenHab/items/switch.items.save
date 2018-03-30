@@ -1,0 +1,32 @@
+Group:Switch gLight
+
+Group:Switch gFamilylight
+
+Group:Switch gLivinglight
+
+Group:Contact gContact
+
+Switch FamilyLight "Family Light"  <light> (gFamilylight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff11/POWER:command:*:default],
+                                                                <[broker:stat/sonoff11/POWER:state:default]",
+                                                                autoupdate="false"}
+Switch EntryLight "Entry Light" <light> (gFamilylight,gLight) [ "Lighting" ]  {mqtt=">[broker:/ESP_Easy/gpio/12:command:ON:1],>[broker:/ESP_Easy/gpio/12:command:OFF:0]"}
+Switch Entry_Timer { expire="20m,command=OFF" }
+
+Switch LivingLightSmall  "LivingRoom  Light"  <light> (gLivinglight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff21/POWER:command:*:default],
+                                                                <[broker:stat/sonoff21/POWER:state:default]",
+                                                                autoupdate="false"}
+
+
+Switch LivingLightBig  "LivingRoom  Light"  <light> (gLivinglight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff22/POWER:command:*:default],
+                                                                <[broker:stat/sonoff22/POWER:state:default]",
+                                                                autoupdate="false"}
+
+Switch	GarageDoor "Garage Door" <garagedoor> { mqtt=">[broker:garage/door/1/action:command:ON:OPEN],>[broker:garage/door/1/action:command:OFF:CLOSE],<[broker:garage/door/1/status:state:OFF:closed],<[broker:garage/door/1/status:state:ON:open]",autoupdate="false"}
+
+Contact GarageDoorSensor "Garage Door [%s]" <garagedoor> (gContact) { mqtt="<[broker:garage/door/1/status:state:CLOSED:closed],<[broker:garage/door/1/status:state:OPEN:open]",autoupdate="false"}
+Switch  GarageDoor_Timer {expire="15m,command=OFF" }
+
+Number garagehumidity "Garage Humidity [%.1f%%]" {mqtt="<[broker:garage/sensor:state:JSONPATH($.humidity)]",autoupdate="false" }
+
+Number garagetemp "Garage Temperature [%.1f ]" {mqtt="<[broker:garage/sensor:state:JSONPATH($.temperature)]",autoupdate="false" }
+

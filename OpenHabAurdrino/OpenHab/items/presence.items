@@ -1,0 +1,18 @@
+
+Switch Present "Someone is Present" <present> // master presence switch
+Group:Switch:AND(OFF,ON) gPresent <present> // all presence sensors belong to this group
+Switch Present_Timer { expire="5m,command=OFF" }
+// Switch BradPhone (gPresent)
+Switch BradPhone (gPresent) { channel="network:pingdevice:BradPhone:online" }
+Number BradPhoneResponseTime { channel="network:pingdevice:BradPhone:latency" }
+
+Switch SaraPhone (gPresent) { channel="network:pingdevice:SaraPhone:online" }
+Number SaraPhoneResponseTime { channel="network:pingdevice:SaraPhone:latency" }
+
+
+Switch BradPhonePresent "Someone is Present" <present>
+Switch BradPhonePresent_Timer { expire="5m,command=OFF" }
+ 
+Switch SaraPhonePresent "Someone is Present" <present>
+Switch SaraPhonePresent_Timer { expire="5m,command=OFF" }
+

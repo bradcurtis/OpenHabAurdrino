@@ -1,0 +1,110 @@
+//rule "notify when light is updated"
+//	when
+//		Item gLight changed
+//	then
+//Thread::sleep(300)
+//		logWarn("test.rules", "start")
+//val trigger = gLight.members.sortBy[lastUpdate].last
+//
+//val trigger  = gLight.members.filter[s|s.lastUpdate("mapdb") !== null].sortBy[lastUpdate("mapdb")].last
+//logWarn("test.rules", dings.name)
+//
+//
+//val StringBuilder msg = new StringBuilder
+//    msg.append(trigger.name)  // note a map and transform can convert from Item name to human friendly words
+//
+//   if(trigger.state == ON) msg.append(" was turned on") else msg.append(" was turned off")
+//
+//
+//voicecommand.sendCommand(msg.toString)
+//
+//
+//
+//logWarn("test.rules", trigger.name)
+//
+//		end
+
+
+rule "notify when Contact  is updated"
+        when
+                Item gContact changed
+        then
+    Thread::sleep(300)
+                logWarn("test.rules", "Contact start")
+
+  val trigger  = gContact.members.filter[s|s.lastUpdate("mapdb") !== null].sortBy[lastUpdate("mapdb")].last
+//logWarn("test.rules", dings.name)
+
+
+  val StringBuilder msg = new StringBuilder
+    msg.append(trigger.name)  // note a map and transform can convert from Item name to human friendly words
+
+   if(trigger.state == OPEN) {
+      msg.append(" was opened")
+     GarageDoor_Timer.postUpdate(2) 
+   }
+   else{ 
+    msg.append(" was closed")
+    GarageDoor_Timer.postUpdate(3)
+   }
+
+  voicecommand.sendCommand(msg.toString)
+
+
+ end
+
+rule "send alert"
+  when
+    Item GarageDoor_Timer changed
+logWarn("test.rules", "Garage door left on")
+  then
+
+if(GarageDoor_Timer.state as DecimalType > 10){
+     logWarn("test.rules", "Garage door left on")
+     
+   }
+end
+
+
+
+rule "turn on lights"
+when
+Channel 'astro:sun:homestart:set#event' triggered START
+then
+sendMail("bradcurtis74@gmail.com", "astrodusk lights on", "home astro rule triggered")
+sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights on", "home astro rule triggered")
+sendCommand(gLight, ON)
+
+end
+
+
+
+rule "turn off lights 9pmw"
+when
+    Time cron "0 0 3 * * ? *"            // Morning start
+then
+  sendMail("bradcurtis74@gmail.com", "astrodusk", "off set rule triggered")
+sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights off", "home astro rule triggered")
+
+                sendCommand(gLight, OFF)
+     
+
+
+end
+
+
+rule "turn off lights morning"
+when
+
+Channel 'astro:sun:local:rise#event' triggered START
+
+then
+  sendMail("bradcurtis74@gmail.com", "astrodusk", "off set rule triggered")
+sendMail("6305612356@messaging.sprintpcs.com", "astrodusk lights off", "home astro rule triggered")
+
+                sendCommand(gLight, OFF)
+
+
+
+end
+

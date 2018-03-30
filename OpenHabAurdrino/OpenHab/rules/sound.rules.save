@@ -1,0 +1,11 @@
+rule "switch audio and announce"
+when
+    Time cron "0 0/2* 1/1 * ? *"            // Morning start
+then
+  
+
+
+				playSound("doorbell.mp3")
+
+
+end

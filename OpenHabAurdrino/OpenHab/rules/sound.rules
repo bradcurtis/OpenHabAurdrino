@@ -1,0 +1,27 @@
+rule "switch audio and announce"
+when
+	Item voicecommand received update
+then
+  
+
+	val String input = Yamaha_Input.state.toString
+	val int level = Yamaha_Volume.state
+ 
+	Yamaha_Input.sendCommand("AUDIO1")
+
+	sendCommand(Yamaha_Volume, 60)
+	playSound("doorbell.mp3")
+	Thread::sleep(3000)
+
+	say(voicecommand.state.toString)	
+
+	Thread::sleep(3000)
+	if (input == "HDMI_1"){
+		Yamaha_Input.sendCommand("HDMI1")
+	}
+	else if (input == "PANDORA"){
+		Yamaha_Input.sendCommand("Pandora")
+	}
+	sendCommand(Yamaha_Volume, level)
+
+end

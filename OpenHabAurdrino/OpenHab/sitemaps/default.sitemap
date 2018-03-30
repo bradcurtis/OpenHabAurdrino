@@ -1,0 +1,66 @@
+
+sitemap default label="1439 s greenwood" {
+Frame label="Weather" {
+    Text item=Temperature valuecolor=[>77="orange",>59="green",>41="orange",<=41="blue"]
+    Text item=ForecastProbaPrecip
+    Text item=ForecastTempMin
+    Text item=ForecastTempMax
+    Text item=ForecastCondition
+    Text item=Sunrise_Time
+}
+
+
+    Frame label="Family Room" icon="groundfloor" {
+         Text item=bedroomOccupancy
+         Text item=bedroomTemperature
+        Switch item=EntryLight label="Entry Light" icon="light"
+        Switch item=FamilyLight label="Family Light" icon="light"
+Text     item=familyroomcameramotion
+    }
+
+   Frame label="Family Room Audo Video" icon="groundfloor" {
+       Switch     item=Yamaha_Power
+	Switch     item=Yamaha_Mute
+	Slider     item=Yamaha_Volume
+	Selection  item=Yamaha_Input       mappings=[HDMI1="TV",HDMI2="PC",AUDIO1="TV",TUNER="Tuner",Pandora="Pandora",Bluetooth="Bluetooth","NET RADIO"="NetRadio"]
+	Selection  item=Yamaha_Surround    mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
+}
+
+   Frame label="Living Room" icon="groundfloor" {
+        Switch item=LivingLightSmall label="Living Room Light Small" icon="light"
+        Switch item=LivingLightBig label="Living Room Light Large" icon="light"
+    }
+
+
+
+    Frame label="Third Floor" icon="bedroom" {
+	Text item=actualTemperatureBedroom
+	Text item=actualHumidity
+	Text item=diningRoomOccupancy
+    }
+
+Frame label="Garage" icon="garage"{
+Switch item=GarageDoor label="Garage Door" icon="garagedoor"
+Text item=GarageDoorSensor
+        Text item=garagehumidity
+        Text item=garagetemp
+       Text item=garagelight
+Text     item=MotionLatch1
+}
+Frame label="Basement" icon="basement"{
+        Text item=basementhumidity
+        Text item=basementtemp
+       Text item=basementlight
+ Text item=basementwater
+Text     item=MotionLatch
+
+}
+
+        Frame label="Camera" {
+                        Image  url="http://10.0.0.27:8765/picture/1/current/"
+                        Image url="http://10.0.0.27:8765/picture/2/current/"
+ 
+          }
+
+
+}

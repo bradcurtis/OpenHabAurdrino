@@ -1,0 +1,51 @@
+Group:Switch gLight "All Lights" ["Lighting"]
+
+Group:Switch gFamilylight "DownStairs Lights" ["Lighting"]
+
+Group:Switch gLivinglight "LivingRoom Lights" ["Lighting"]
+
+Group:Contact gContact
+
+Switch FamilyLight "Family Light"  <light> (gFamilylight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff11/POWER:command:*:default],
+                                                                <[broker:stat/sonoff11/POWER:state:default]",
+                                                                autoupdate="false"}
+Switch EntryLight "Entry Light" <light> (gFamilylight,gLight) [ "Lighting" ]  {mqtt=">[broker:/ESP_Easy/gpio/12:command:ON:1],>[broker:/ESP_Easy/gpio/12:command:OFF:0]"}
+Switch Entry_Timer { expire="20m,command=OFF" }
+
+String  familyroomcameramotion "Family Camera Motion [%s]" <motion> {mqtt="<[broker:familyroom/camera/motion:state:default",autoupdate="false",expire="5m,Idle" }
+String  MotionLatch2 "Family Room  Motion [%s]" <motion> {expire="5m,Idle"}
+
+Switch LivingLightSmall  "LivingRoom  Light"  <light> (gLivinglight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff21/POWER:command:*:default],
+                                                                <[broker:stat/sonoff21/POWER:state:default]",
+                                                                autoupdate="false"}
+
+
+Switch LivingLightBig  "LivingRoom  Light"  <light> (gLivinglight,gLight) [ "Lighting" ] { mqtt=">[broker:cmnd/sonoff22/POWER:command:*:default],
+                                                                <[broker:stat/sonoff22/POWER:state:default]",
+                                                                autoupdate="false"}
+
+Switch	GarageDoor "Garage Door" <garagedoor> { mqtt=">[broker:garage/door/1/action:command:ON:OPEN],>[broker:garage/door/1/action:command:OFF:CLOSE],<[broker:garage/door/1/status:state:OFF:closed],<[broker:garage/door/1/status:state:ON:open]",autoupdate="false"}
+
+Contact GarageDoorSensor "Garage Door [%s]" <garagedoor> (gContact) { mqtt="<[broker:garage/door/1/status:state:CLOSED:closed],<[broker:garage/door/1/status:state:OPEN:open]",autoupdate="false"}
+Switch  GarageDoor_Timer {expire="15m,command=OFF" }
+
+Number garagehumidity "Garage Humidity [%.1f%%]" <humidity>  {mqtt="<[broker:garage/sensor:state:JSONPATH($.humidity)]",autoupdate="false" }
+
+Number garagetemp "Garage Temperature [%.1f °F]" <temperature>  {mqtt="<[broker:garage/sensor:state:JSONPATH($.temperature)]",autoupdate="false" }
+
+Number garagelight "Garage Light [%.0f lumens]" <light> {mqtt="<[broker:garage/sensor:state:JSONPATH($.ldr)]",autoupdate="false" }
+String  garagemotion "Garage Motion [%s]" <motion> {mqtt="<[broker:garage/sensor:state:JSONPATH($.motion)]",autoupdate="false" }
+String  MotionLatch1 "Garage Motion [%s]" <motion> {expire="5m,Idle"}
+
+
+Number basementhumidity "Basement Humidity [%.1f%%]" <humidity> {mqtt="<[broker:basement/sensor1:state:JSONPATH($.humidity)]",autoupdate="false" }
+
+Number basementtemp "Basement Temperature [%.1f °F]" <temperature>  {mqtt="<[broker:basement/sensor1:state:JSONPATH($.temperature)]",autoupdate="false" }
+
+Number basementlight "Basement Light [%.0f lumens]" <light> {mqtt="<[broker:basement/sensor1:state:JSONPATH($.ldr)]",autoupdate="false" }
+
+String  basementmotion "Basement Motion [%s]" <motion> {mqtt="<[broker:basement/sensor1:state:JSONPATH($.motion)]",autoupdate="false" }
+
+String  basementwater "Basement Water [%s]" <water> {mqtt="<[broker:basement/sensor1:state:JSONPATH($.water)]",autoupdate="false" }
+
+String  MotionLatch "Basement Motion [%s]" <motion> {expire="5m,Idle"}

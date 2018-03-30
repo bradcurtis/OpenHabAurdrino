@@ -1,0 +1,31 @@
+Group gFF           "First Floor"   <firstfloor>
+Group gFR           "Family Room"  <familyfloor>
+Group gB            "Cellar"        <basement>
+Group gBR           "Bed Room"   <bedroom>
+
+
+DateTime lastModifiedBedroom "last mod [%1$tH:%1$tM:%1$tS]" (gBR) { ecobee="<[511817781575#lastModified]" }
+Number actualTemperatureBedroom "actual temp [%.1f °F]" (gBR) { ecobee="<[511817781575#runtime.actualTemperature]" }
+Number actualHumidityBedroom "actual hum [%d %%]" (gBR) { ecobee="<[511817781575#runtime.actualHumidity]" }
+
+Group gWeather (All)
+
+DateTime weather_timestamp "timestamp [%1$tm/%1$td/%1$tY %1$tH:%1$tM:%1$tS]"   (gWeather) { ecobee="<[123456789012#weather.timestamp]" }
+String weather_weatherStation "weatherStation [%s]"                            (gWeather) { ecobee="<[123456789012#weather.weatherStation]" }
+
+Number weather_forecasts0_weatherSymbol "weatherSymbol [MAP(ecobeeWeatherSymbol.map):%d]" (gWeather) { ecobee="<[123456789012#weather.forecasts[0].weatherSymbol]" }
+DateTime weather_forecasts0_dateTime "dateTime [%1$tm/%1$td/%1$tY %1$tH:%1$tM:%1$tS]" (gWeather) { ecobee="<[123456789012#weather.forecasts[0].dateTime]" }
+String weather_forecasts0_condition "condition [%s]"                           (gWeather) { ecobee="<[123456789012#weather.forecasts[0].condition]" }
+Number weather_forecasts0_temperature "temperature [%.1f °F]"                  (gWeather) { ecobee="<[123456789012#weather.forecasts[0].temperature]" }
+Number weather_forecasts0_pressure "pressure [%d]"                             (gWeather) { ecobee="<[123456789012#weather.forecasts[0].pressure]" }
+Number weather_forecasts0_relativeHumidity "relativeHumidity [%d %%]"          (gWeather) { ecobee="<[123456789012#weather.forecasts[0].relativeHumidity]" }
+Number weather_forecasts0_dewpoint "dewpoint [%d]"                             (gWeather) { ecobee="<[123456789012#weather.forecasts[0].dewpoint]" }
+Number weather_forecasts0_visibility "visibility [%d meters]"                  (gWeather) { ecobee="<[123456789012#weather.forecasts[0].visibility]" }
+Number weather_forecasts0_windSpeed "windSpeed [%d]"                           (gWeather) { ecobee="<[123456789012#weather.forecasts[0].windSpeed]" }
+Number weather_forecasts0_windGust "windGust [%d]"                             (gWeather) { ecobee="<[123456789012#weather.forecasts[0].windGust]" }
+String weather_forecasts0_windDirection "windDirection [%s]"                   (gWeather) { ecobee="<[123456789012#weather.forecasts[0].windDirection]" }
+Number weather_forecasts0_windBearing "windBearing [%d]"                       (gWeather) { ecobee="<[123456789012#weather.forecasts[0].windBearing]" }
+Number weather_forecasts0_pop "pop [%d %%]"                                    (gWeather) { ecobee="<[123456789012#weather.forecasts[0].pop]" }
+Number weather_forecasts0_tempHigh "tempHigh [%.1f °F]"                        (gWeather) { ecobee="<[123456789012#weather.forecasts[0].tempHigh]" } 
+Number weather_forecasts0_tempLow "tempLow [%.1f °F]"                          (gWeather) { ecobee="<[123456789012#weather.forecasts[0].tempLow]" } 
+Number weather_forecasts0_sky "sky [MAP(ecobeeSky.map):%d]"                    (gWeather) { ecobee="<[123456789012#weather.forecasts[0].sky]" }

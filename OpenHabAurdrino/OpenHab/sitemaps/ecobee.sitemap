@@ -1,0 +1,27 @@
+sitemap ecobee label="Ecobee"
+{
+  Frame label="Thermostat" {
+    Text item=lastModified
+    Text item=actualTemperature
+    Text item=actualHumidity
+    Switch item=hvacMode label="HVAC Mode" mappings=[heat=Heat,cool=Cool,auto=Auto,off=Off]
+    Text item=currentClimateRef
+    Switch item=desiredComf mappings=[sleep=Sleep,wakeup=Wake,home=Home,away=Away,smart6=Gym,resume=Resume]
+    Setpoint item=desiredTemp label="Temp [%.1f °F]" minValue=50 maxValue=80 step=1 visibility=[hvacMode==heat,hvacMode==cool]
+    Setpoint item=desiredHeat label="Heat [%.1f °F]" minValue=50 maxValue=80 step=1 visibility=[hvacMode==auto]
+    Setpoint item=desiredCool label="Cool [%.1f °F]" minValue=50 maxValue=80 step=1 visibility=[hvacMode==auto]
+    Switch item=desiredFan mappings=[on=On,auto=Auto] // for rule supported in 1.9
+  }
+
+  Frame label="Dining Room Sensors" {
+    Text item=diningRoomTemperature
+    Text item=diningRoomHumidity
+    Text item=diningRoomOccupancy
+  }
+
+  Frame label="Bedroom Sensors" {
+   Text item=bedroomTemperature
+   Text item=bedroomOccupancy
+  }
+
+}

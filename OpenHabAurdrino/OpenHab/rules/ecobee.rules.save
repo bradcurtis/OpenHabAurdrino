@@ -1,0 +1,21 @@
+rule LastMotionON
+when
+    Item bedroomOccupancy changed to ON or
+    Item diningRoomOccupancy changed to ON 
+    
+then
+           if (now.getHourOfDay() > 9 && now.getHourOfDay() < 13) {
+                sendCommand(EntryLight, ON)
+                Switch Entry_Timer { expire="20m,command=OFF" }
+          }
+
+end
+
+rule "LightTimer end"when
+  Item Entry_Timer received command OFF
+then
+    sendCommand(EntryLight, ON)
+
+
+end
+

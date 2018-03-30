@@ -1,0 +1,21 @@
+DateTime lastModified "last mod [%1$tH:%1$tM:%1$tS]" { ecobee="<[511817781575#lastModified]" }
+Number actualTemperature "actual temp [%.1f °F]" { ecobee="<[511817781575#runtime.actualTemperature]" }
+Number actualHumidity "actual hum [%d %%]" { ecobee="<[511817781575#runtime.actualHumidity]" }
+String hvacMode "hvac mode [%s]"            { ecobee="=[511817781575#settings.hvacMode]" }
+String currentClimateRef "sched comf [%s]"  { ecobee="<[511817781575#program.currentClimateRef]" }
+String desiredComf "desired comf"           { ecobee="<[511817781575#runningEvent.holdClimateRef]", autoupdate="false" }
+Number desiredTemp "desired temp [%.1f °F]"
+Number desiredHeat "desired heat [%.1f °F]" { ecobee="<[511817781575#runtime.desiredHeat]" }
+Number desiredCool "desired cool [%.1f °F]" { ecobee="<[511817781575#runtime.desiredCool]" }
+String desiredFan  "desired fan mode [%s]"  { ecobee="<[511817781575#runtime.desiredFanMode]" }
+
+// Address the ecobee3 unit itself as a sensor, unlike remote sensors it also supports humidity:
+Number bedrr "dining rm temp [%.1f °F]" { ecobee="<[511817781575#remoteSensors(Dining Room).capability(temperature).value]" }
+Number diningRoomHumidity "dining rm hum [%d %%]" { ecobee="<[511817781575#remoteSensors(Dining Room).capability(humidity).value]" }
+Switch diningRoomOccupancy "dining rm occ [%s]" { ecobee="<[511817781575#remoteSensors(Dining Room).capability(occupancy).value]" }
+
+Number bedroomTemperature "bedroom temp [%.1f °F]" { ecobee="<[511817781575#remoteSensors(Bedroom).capability(temperature).value]" }
+Switch bedroomOccupancy "bedroom occ [%s]" { ecobee="<[511817781575#remoteSensors(Bedroom).capability(occupancy).value]" }
+
+Number livingRoomTemperature "living rm temp [%.1f °F]" { ecobee="<[511817781575#remoteSensors(Living Room).capability(temperature).value]" }
+Switch livingRoomOccupancy "living rm occ [%s]" { ecobee="<[511817781575#remoteSensors(Living Room).capability(occupancy).value]" }
